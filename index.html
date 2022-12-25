@@ -7,7 +7,7 @@
     <title>Blinker</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 </head>
 <body>
     <header>
@@ -17,9 +17,9 @@
                     <img src="./assets/Blinker-logo.png" alt="">
                 </figure>
                 <ul class="nav__links">
-                    <a href=""><li class="nav__link">Home</li></a>
-                    <a href=""><li class="nav__link">Movies</li></a>
-                    <a href=""><li class="nav__link">Search</li></a>
+                    <a href="" class="nav__link--wrapper"><li class="nav__link">Home</li></a>
+                    <a href="" class="nav__link--wrapper"><li class="nav__link">Movies</li></a>
+                    <a href="" class="nav__link--wrapper"><li class="nav__link">Search</li></a>
                 </ul>
             </nav>
         </div>
@@ -29,8 +29,8 @@
                     <div class="search__wrapper">
                         <label class="search__title">Browse Our Movies</label>
                         <div class="search__bar">
-                            <input type="text" placeholder="Search by Movie name" class="search__field">         
-                            <i class="fas fa-search"></i>
+                            <input value="" id="movieName" type="text" placeholder="Search by Movie name" class="search__field">         
+                            <i type="button" class="fas fa-search"></i>
                         </div>
                     </div>
                 </div>
@@ -42,55 +42,40 @@
         <div class="container">
             <div class="row">
                 <div class="filter__wrapper">
-                    <select id="filter">
-                        <option selected>Default</option>
+                    <select id="filter" onchange="filterMovies(event)">
+                        <option disabled selected>Sort</option>
                         <option value="LOW_TO_HIGH">Year: low to high</option>
                         <option value="HIGH_TO_LOW">Year: high to low</option>
                     </select>
                 </div>
+                <div class="movie__list--wrapper">
+                    <div class="spinner__wrapper">
+                        <i class="fas fa-spinner books__loading--spinner"></i>
+                    </div>
                 <div class="movie__list">
 
                     <div class="movie__wrapper">
-                        <h3 class="movie__title">name</h3>
-                        <h4 class="movie__year">2000</h4>
+                        <h3 class="movie__title"></h3>
+                        <h4 class="movie__year"></h4>
                         <figure class="movie__img--wrapper">
-                            <img src="./assets/Avenger_poster.webp">
-                        </figure>
-                    </div>
-                    <div class="movie__wrapper">
-                        <h3 class="movie__title">name</h3>
-                        <h4 class="movie__year">2000</h4>
-                        <figure class="movie__img--wrapper">
-                            <img src="./assets/Avenger_poster.webp">
-                        </figure>
-                    </div>
-                    <div class="movie__wrapper">
-                        <h3 class="movie__title">name</h3>
-                        <h4 class="movie__year">2000</h4>
-                        <figure class="movie__img--wrapper">
-                            <img src="./assets/Avenger_poster.webp">
-                        </figure>
-                    </div>
-                    <div class="movie__wrapper">
-                        <h3 class="movie__title">name</h3>
-                        <h4 class="movie__year">2000</h4>
-                        <figure class="movie__img--wrapper">
-                            <img src="./assets/Avenger_poster.webp">
-                        </figure>
-                    </div>
-                    <div class="movie__wrapper">
-                        <h3 class="movie__title">name</h3>
-                        <h4 class="movie__year">2000</h4>
-                        <figure class="movie__img--wrapper">
-                            <img src="./assets/Avenger_poster.webp">
+                            <img src="">
                         </figure>
                     </div>
 
-
+                </div>
                 </div>
             </div>
         </div>
 
     </section>
+
+    <footer>
+        <div class="container footer__container">
+            <figure class="logo__wrapper">
+                <img src="./assets/Blinker-logo.png" alt="">
+            </figure>
+            <div class="copyright">&copy; Patrikas Dapšys 2022</div>
+        </div>
+    </footer>
 </body>
 </html>
