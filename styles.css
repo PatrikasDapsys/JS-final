@@ -136,7 +136,13 @@ nav {
     color: #000;
     position: absolute;
     right: 5%;
-    background-color: #fff;
+    background-color: transparent;
+}
+
+.search__button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
 }
 
 /* MOVIES */
@@ -169,7 +175,7 @@ nav {
 }
 
 .movie__wrapper {
-    width:  25%;
+    width:  calc(100% / 3);
     display: flex;
     flex-direction: column-reverse;
     align-items: center;

@@ -3,27 +3,26 @@ const skeletonMovies = document.querySelector('.movie__list--wrapper')
 const skeletonFilter = document.querySelector('.filter__wrapper')
 let movies;
 
-async function renderMovies (filter) {
-    const movie = await (fetch("https://www.omdbapi.com/?apikey=2a3e348d&s=fast"));
+async function renderMovies (filter, searchValue) {
+    
+    const movie = await (!!searchValue ?
+    await (fetch(`https://www.omdbapi.com/?apikey=2a3e348d&s=${searchValue}`)) :
+    await (fetch(`https://www.omdbapi.com/?apikey=2a3e348d&s=fast`)));
     const movieSearchResults = await movie.json();
-    const movieData = await (movieSearchResults.Search);
+    const movieData = await (movieSearchResults.Search).slice(0, 6);
     skeletonMovies.classList += ' movies__loading';
     skeletonFilter.classList += ' movies__loading';
     
-    if(!movies) {
-        movies = movieData;
-    }    
+    movies = movieData;
+    
     
     setTimeout(function() {
         skeletonMovies.classList.remove('movies__loading');
         skeletonFilter.classList.remove('movies__loading');
     }, 1000);
 
-    //skeletonPhase.classList.remove('movies__loading');
-
-
-
     if (filter === 'LOW_TO_HIGH') {
+        console.log(movies);
         filteredMovies = movies.sort ((a, b) => a.Year - b.Year)
         movieListEl.innerHTML = filteredMovies.map((movie) => moviesHTML(movie)).join("");
     }
@@ -34,7 +33,6 @@ async function renderMovies (filter) {
     else{
         movieListEl.innerHTML = movieData.map((movie) => moviesHTML(movie)).join("");
     }
-    
 }
 renderMovies();
 
@@ -54,7 +52,8 @@ function moviesHTML(movie) {
     `
 }
 
-// function getInputValue() {
-//     let inputValue = document.getElementById("movieName").value;
-//     alert("Value is " += inputValue);
-// }
+function getInputValue() {
+    let inputValue = document.getElementById("inputName").value;
+    const searchValue = inputValue;
+    renderMovies(filter, searchValue)
+}
